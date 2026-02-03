@@ -1,0 +1,36 @@
+services:
+  bgutil-ytdlp-pot-provider:
+    build:
+      context: "."
+      dockerfile: "bgutil-ytdlp-pot-provider.Dockerfile"
+    container_name: "bgutil-ytdlp-pot-provider"
+    environment:
+      TZ: "America/New_York"
+    image: "bgutil-ytdlp-pot-provider:local"
+    init: true
+    restart: "unless-stopped"
+    user: "${USER_ID}:${GROUP_ID}"
+
+  ytcd:
+    build:
+      context: "."
+      dockerfile: "ytcd.Dockerfile"
+    container_name: "ytcd"
+    environment:
+      TZ: "America/New_York"
+      YTCD_BGUTIL_YTDLP_POT_PROVIDER_URL: "http://bgutil-ytdlp-pot-provider:4416"
+    image: "ytcd:local"
+    init: true
+    restart: "unless-stopped"
+    user: "${USER_ID}:${GROUP_ID}"
+    volumes:
+      - read_only: true
+        source: "./config"
+        target: "/etc/ytcd"
+        type: "bind"
+      - source: "./data"
+        target: "/var/lib/ytcd/data"
+        type: "bind"
+      - source: "./videos"
+        target: "/var/lib/ytcd/videos"
+        type: "bind"
