@@ -56,3 +56,7 @@ development), and not have to worry about re-downloading things. It's just `yt-d
 
 I've omitted many details, but that's the gist of it. The source code tells the whole story. Go read all of the flags
 we pass to `yt-dlp` as a starting point for customization. Have fun!
+
+(This code would be public domain, but it depends on `bgutil-ytdlp-pot-provider`, which is GPL 3.0. Although
+`bgutil-ytdlp-pot-provider` is run as a standalone executable, not linked into `ytcd`, I choose to license this code
+as GPL 3.0 as well, for simplicity.)
