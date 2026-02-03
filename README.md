@@ -35,11 +35,12 @@ Finally, start the Docker containers:
 docker compose up
 ```
 
-Here's what the software does, in a loop, forever:
+Here's what the software does:
 
 1. Start a [POT provider server](https://github.com/Brainicism/bgutil-ytdlp-pot-provider) and wait for it to accept requests.
 2. For each channel in `config/channels.txt`, download the videos were uploaded exactly 2 days ago with [`yt-dlp`](https://github.com/yt-dlp/yt-dlp).
 3. Sleep until between 12:30am and 4:00am.
+4. Repeat 2–4.
 
 The videos are downloaded into `videos/CHANNEL/Season 01/TITLE`. You certainly may want to target a different directory,
 perhaps one that doesn't have an awkward `Season 01` thing. I added that because I use Jellyfin as a media server, which
